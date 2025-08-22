@@ -1,8 +1,10 @@
+// db.js
 const { Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize("resume_app", "postgres", "4256135", {
-  host: "localhost",
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: "postgres",
+  protocol: "postgres",
+  logging: false, // можно включить для отладки
 });
 
 module.exports = sequelize;
