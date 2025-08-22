@@ -1,4 +1,9 @@
 // server.js
+const sequelize = new Sequelize(process.env.postgresql://postgres:eNyzbkjkzyWeFxhntdIPOaCYAxLoVTBG@postgres.railway.internal:5432/railway, {
+  dialect: "postgres",
+  protocol: "postgres",
+  dialectOptions: { ssl: { rejectUnauthorized: false } },
+});
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
