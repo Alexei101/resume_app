@@ -1,5 +1,5 @@
 // server.js
-const sequelize = new Sequelize(process.env.postgresql://postgres:eNyzbkjkzyWeFxhntdIPOaCYAxLoVTBG@postgres.railway.internal:5432/railway, {
+const sequelize = new Sequelize(process.env.postgresql://postgres:IwYsrsiKWNfDUApXDZkcvGSBxuzkawdr@postgres-2k50.railway.internal:5432/railway, {
   dialect: "postgres",
   protocol: "postgres",
   dialectOptions: { ssl: { rejectUnauthorized: false } },
