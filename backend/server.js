@@ -1,4 +1,5 @@
 // server.js
+const { Sequelize } = require("sequelize");
 const sequelize = require("./db");
 const express = require("express");
 const path = require("path");
