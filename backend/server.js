@@ -1,6 +1,7 @@
 // server.js
 const { Sequelize } = require("sequelize");
 const sequelize = require("./db");
+const fetch = require("node-fetch");
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
@@ -13,12 +14,24 @@ app.use(cors());
 app.use(express.json());
 const PORT = process.env.PORT || 3000;;
 
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+
 // POST /contact — добавление сообщения
 app.post("/contact", async (req, res) => {
   try {
     const { name, contact, message } = req.body;
 	const newMessage = await ContactMessage.create({ name, contact, message });
-    res.status(201).json(newMessage);
+    const text = `📩 Новое сообщение!\n\n👤 Имя: ${name}\n📞 Контакт: ${contact}\n💬 Сообщение:\n${message}`;
+    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text,
+      }),
+    });
+    res.status(200).json(newMessage);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
