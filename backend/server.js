@@ -1,7 +1,6 @@
 // server.js
 const { Sequelize } = require("sequelize");
 const sequelize = require("./db");
-const fetch = require("node-fetch");
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
