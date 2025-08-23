@@ -10,7 +10,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://resumeapp-stage.up.railway.app/contact", {
+    fetch("https://resumeapp-stage.up.railway.app/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, contact, message }),
